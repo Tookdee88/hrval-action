@@ -13,6 +13,8 @@ AWS_S3_PLUGIN="${7-""}"
 GCS_REPO=${8-false}
 GCS_PLUGIN=${9-""}
 HELM_SOURCES_CACHE_ENABLED=${10-""}
+CHART_REPO_USERNAME=${11-""}
+CHART_REPO_PASSWORD=${12-""}
 
 if [ "${HELM_SOURCES_CACHE_ENABLED}" == "true" ]; then
   CACHEDIR=$(mktemp -d)
@@ -51,7 +53,7 @@ function validate {
   DIR=${1}
   # If the path provided is actually a file, just run hrval against this one file
   if test -f "${DIR}"; then
-    ${HRVAL} "${DIR}" "${IGNORE_VALUES}" "${KUBE_VER}" "${HELM_VER}" "${CACHEDIR}"
+    ${HRVAL} "${DIR}" "${IGNORE_VALUES}" "${KUBE_VER}" "${HELM_VER}" "${CACHEDIR}" "${CHART_REPO_USERNAME}" "${CHART_REPO_PASSWORD}"
     exit 0
   fi
 
@@ -86,7 +88,7 @@ function validate {
 
   for f in "${FOUND_FILES[@]}"; do
     if [[ $(isHelmRelease "${f}") == "true" ]]; then
-      ${HRVAL} "${f}" "${IGNORE_VALUES}" "${KUBE_VER}" "${HELM_VER}" "${CACHEDIR}"
+      ${HRVAL} "${f}" "${IGNORE_VALUES}" "${KUBE_VER}" "${HELM_VER}" "${CACHEDIR}" "${CHART_REPO_USERNAME}" "${CHART_REPO_PASSWORD}"
       FILES_TESTED=$(( FILES_TESTED+1 ))
     else
       echo "Ignoring ${f} not a HelmRelease"

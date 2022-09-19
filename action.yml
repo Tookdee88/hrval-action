@@ -53,3 +53,5 @@ runs:
     - ${{ inputs.gcsRepo }}
     - ${{ inputs.gcsPlugin }}
     - ${{ inputs.helmSourcesCacheEnabled }}
+    - ${{ inputs.charRepotUser }}
+    - ${{ inputs.charRepotPassword }}

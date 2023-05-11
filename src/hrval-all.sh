@@ -51,6 +51,8 @@ fi
 
 function validate {
   DIR=${1}
+
+  echo "::group::${DIR}"
   # If the path provided is actually a file, just run hrval against this one file
   if test -f "${DIR}"; then
     ${HRVAL} "${DIR}" "${IGNORE_VALUES}" "${KUBE_VER}" "${HELM_VER}" "${CACHEDIR}" "${CHART_REPO_USERNAME}" "${CHART_REPO_PASSWORD}"
@@ -96,6 +98,8 @@ function validate {
   done
 
   # This will set the GitHub actions output 'numFilesTested'
+
+  echo "::endgroup::"
   echo "::set-output name=numFilesTested::${FILES_TESTED}"
 }
 

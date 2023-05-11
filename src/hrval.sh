@@ -157,7 +157,6 @@ function retrieve_sources {
 
 
 function validate {
-  echo "::group::${HELM_RELEASE}"
   if [[ $(isHelmRelease "${HELM_RELEASE}") == "false" ]]; then
     echo "\"${HELM_RELEASE}\" is not of kind HelmRelease!"
     exit 1
@@ -199,7 +198,6 @@ function validate {
 
   echo "Validating Helm release ${HELM_RELEASE_NAME}.${HELM_RELEASE_NAMESPACE} against Kubernetes ${KUBE_VER}"
   kubeval --strict --ignore-missing-schemas --kubernetes-version "${KUBE_VER}" "${TMPDIR}/${HELM_RELEASE_NAME}.release.yaml"
-  echo "::endgroup::"
 }
 
 validate

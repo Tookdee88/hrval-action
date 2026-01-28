@@ -31,7 +31,7 @@ inputs:
     default: false
   gcsPlugin:
     description: '(Optional) GCS Plugin to be used in the helm plugin install command'
-    default: 'https://github.com/hayorov/helm-gcs.git --version 0.4.0'
+    default: 'https://github.com/hayorov/helm-gcs.git --version 0.6.3'
   helmSourcesCacheEnabled:
     description: '(Optional) Enabled Helm source caching, so same release or ref will not be downloaded twice.'
     default: 'false'

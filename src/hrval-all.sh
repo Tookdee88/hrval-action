@@ -43,7 +43,7 @@ if [[ ${GCS_REPO} == true ]]; then
   fi
 
   if [[ "${HELM_VER}" == "v3" ]]; then
-    helmv3 plugin install "${GCS_PLUGIN}"
+    helmv3 plugin install "${GCS_PLUGIN}" --version 0.6.3
   else
     helm plugin install "${GCS_PLUGIN}"
   fi
